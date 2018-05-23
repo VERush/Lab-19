@@ -1,0 +1,25 @@
+SELECT * FROM customers;
+
+SELECT * FROM customers WHERE COUNTRY = "France";
+
+SELECT * FROM customers WHERE SUBSTR(CustomerID,1,2) = "BL";
+
+SELECT * FROM ORDERS LIMIT 100;
+SELECT * FROM customers WHERE (PostalCode = "1010") | (PostalCode = "3012") | (PostalCode = "12209") | (PostalCode = "05023");
+SELECT * FROM ORDERS WHERE ShipRegion is not null;
+SELECT * FROM customers order by country, city;
+INSERT INTO `northwinds`.`customers` (`CustomerID`, `CompanyName`, `ContactName`, `ContactTitle`, `Address`, `City`, `Region`, `PostalCode`, `Country`, `Phone`, `Fax`) VALUES ('RUSHC', 'Rush Consulting', 'Vicki Rush', 'VP Sales', '123 Main St', 'Royal Oak', 'MI', '48062', 'USA', '(248) 535-1234', '(248) 535-1250');
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE ORDERS SET SHIPREGION = "EuroZone" where shipcountry = "France";
+DELETE FROM northwinds.`order details` where quantity = 1;
+select avg(quantity), max(quantity), min(quantity) from northwinds.`order details`;
+select orderid, avg(quantity), max(quantity), min(quantity) from northwinds.`order details` group by orderid;
+select customerid from orders where orderid = 10290;
+select * from orders join customers;
+select * from orders left join customers using (customerid);
+select * from orders right join customers using (customerid);
+SELECT FirstName FROM employees where reportsTo is null;
+SELECT FirstName FROM employees where reportsTo = "Andrew";
+
